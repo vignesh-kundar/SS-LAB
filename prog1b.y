@@ -10,11 +10,11 @@ input:exp {printf("result=%d\n",$$);exit(0);}
 exp:exp '+' exp	{$$=$1+$3;}
 |exp '-' exp	{$$=$1-$3;}
 |exp '*' exp	{$$=$1*$3;}
-|exp '/' exp	{if($3==0)
-	{ 
-	printf("Divide by Zero Error\n");exit(0);}}
-		|'('exp')' {$$=$2;}
-		|NUM {$$=$1;}
+|exp '/' exp	{ if($3==0) { printf("Divide by Zero Error\n");exit(0); }
+		  else $$=$1/$3; }
+|'('exp')' {$$=$2;}
+|NUM {$$=$1;}
+;
                 ;
 %%
 int main()
